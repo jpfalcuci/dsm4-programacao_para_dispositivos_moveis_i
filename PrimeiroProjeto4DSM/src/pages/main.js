@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../service/api';
-import { Keyboard } from 'react-native';
+import { Keyboard, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     Container,
@@ -16,38 +17,67 @@ import {
     ProfileButton,
     ProfileButtonText,
 } from './styles';
+import styled from 'styled-components';
 
 export default class Main extends Component {
     
     state = {
         newUser: '',
         users: [],
+        loading: false,
+    };
+
+    async componentDidMount(_, prevState) {
+        const users = await AsyncStorage.getItem('users');
+
+        if (users) {
+            this.setState({ users: JSON.parse(users) });
+        }
+
+    };
+
+    async componentDidUpdate(_, prevState) {
+        const { users } = this.state;
+
+        if (prevState.users !== users) {
+            await AsyncStorage.setItem('users', JSON.stringify(users));
+        }
     };
 
     handleAddUser = async () => {
-        const { users, newUser } = this.state;
 
-        const response = await api.get(`/users/${newUser}`);
+        try {
+            const { users, newUser } = this.state;
 
-        const data = {
-            name: response.data.name,
-            login: response.data.login,
-            bio: response.data.bio,
-            avatar: response.data.avatar_url,
-        };
+            this.setState({ loading: true });
 
-        this.setState({
-            users: [...users, data],
-            newUser: '',
-        });
+            const response = await api.get(`/users/${newUser}`);
 
-        Keyboard.dismiss();
+            const data = {
+                name: response.data.name,
+                login: response.data.login,
+                bio: response.data.bio,
+                avatar: response.data.avatar_url,
+            };
 
-        console.log(data);
+            this.setState({
+                users: [...users, data],
+                newUser: '',
+                loading: false,
+            });
+
+            Keyboard.dismiss();
+
+        } catch (error) {
+            alert('Usuário não encontrado');
+            this.setState({
+                loading: false
+            });
+        }
     };
 
     render() {
-        const { users, newUser } = this.state;
+        const { users, newUser, loading } = this.state;
 
         return (
             <Container>
@@ -61,8 +91,12 @@ export default class Main extends Component {
                         returnKeyType="send"
                         onSubmitEditing={this.handleAddUser}
                     />
-                    <SubmitButton onPress={this.handleAddUser}>
-                        <Icon name="add" size={20} color="#fff" />
+                    <SubmitButton Loading={loading} onPress={this.handleAddUser}>
+                        {loading ? (
+                            <ActivityIndicator color="#fff" />
+                        ) : (
+                            <Icon name='add' size={20} color='#fff' />
+                        )}
                     </SubmitButton>
                 </Form>
 
@@ -78,6 +112,18 @@ export default class Main extends Component {
 
                             <ProfileButton onPress={() => {}}>
                                 <ProfileButtonText>Ver perfil</ProfileButtonText>
+                            </ProfileButton>
+
+                            <ProfileButton onPress={() => {
+                                this.setState({
+                                    users: this.state.users.filter(
+                                        user => user.login !== item.login
+                                    )
+                                });
+                            }}
+                                style={{backgroundColor: '#ffc0cb'}}
+                            >
+                                <ProfileButtonText>Excluir</ProfileButtonText>
                             </ProfileButton>
                         </User>
                     )}
