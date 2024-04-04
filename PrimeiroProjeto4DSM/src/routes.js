@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Main from "./pages/main"
 import Login from './pages/login';
+import User from './pages/user';
 
 const Stack = createStackNavigator()
 
@@ -32,6 +33,7 @@ export default function Routes(){
                     options={{
                         title: 'GitHub Viewer',
                         headerTitleAlign: 'center',
+                        headerTintColor: '#fff',
                         // headerLeft: null,
                         headerStyle: {
                             backgroundColor: '#3498db',
@@ -42,7 +44,22 @@ export default function Routes(){
                         }
                     }}
                 />
-
+                <Stack.Screen
+                    name='user'
+                    component={User}
+                    options={{
+                        title: 'Perfil do Usuário',
+                        headerTitleAlign: 'center',
+                        headerTintColor: '#fff',
+                        headerStyle: {
+                            backgroundColor: '#3498db',
+                        },
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        }
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

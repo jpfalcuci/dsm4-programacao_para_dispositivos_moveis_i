@@ -53,6 +53,15 @@ export default class Main extends Component {
 
             const response = await api.get(`/users/${newUser}`);
 
+            if(users.find(user => user.login === response.data.login)) {
+                alert("Usuário já adicionado");
+                this.setState({
+                    loading: false,
+                    newUser: '',
+                });
+                return;
+            }
+
             const data = {
                 name: response.data.name,
                 login: response.data.login,
@@ -71,8 +80,10 @@ export default class Main extends Component {
         } catch (error) {
             alert('Usuário não encontrado');
             this.setState({
-                loading: false
+                loading: false,
+                newUser: '',
             });
+            Keyboard.dismiss();
         }
     };
 
@@ -110,17 +121,20 @@ export default class Main extends Component {
                             <Name>{item.name}</Name>
                             <Bio>{item.bio}</Bio>
 
-                            <ProfileButton onPress={() => {}}>
+                            <ProfileButton onPress={() => {
+                                this.props.navigation.navigate('user', { user: item })
+                            }}>
                                 <ProfileButtonText>Ver perfil</ProfileButtonText>
                             </ProfileButton>
 
-                            <ProfileButton onPress={() => {
-                                this.setState({
-                                    users: this.state.users.filter(
-                                        user => user.login !== item.login
-                                    )
-                                });
-                            }}
+                            <ProfileButton
+                                onPress={() => {
+                                    this.setState({
+                                        users: this.state.users.filter(
+                                            user => user.login !== item.login
+                                        )
+                                    });
+                                }}
                                 style={{backgroundColor: '#ffc0cb'}}
                             >
                                 <ProfileButtonText>Excluir</ProfileButtonText>
