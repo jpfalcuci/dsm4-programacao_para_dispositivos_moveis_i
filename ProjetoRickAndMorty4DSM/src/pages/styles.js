@@ -13,7 +13,7 @@ export const Input = styled.TextInput`
     border-width: 1px;
     border-color: #ccc;
     border-radius: 10px;
-    padding: 10px;
+    padding: 7px;
     margin-vertical: 10px;
     width: 80%;
 `;
@@ -34,10 +34,9 @@ export const ButtonText = styled.Text`
 
 export const Form = styled.View`
     flex-direction: row;
-    padding-bottom: 20px;
     border-bottom-width: 1px;
     border-color: #eee;
-    width: 100%;
+    width: 90%;
     justify-content: center;
     align-items: center;
 `;
@@ -46,7 +45,7 @@ export const AddButton = styled.TouchableOpacity`
     background-color: #272B33;
     border-radius: 10px;
     padding: 10px;
-    width: 10%;
+    width: 12%;
     align-items: center;
     margin: 10px;
     justify-content: center;

@@ -11,7 +11,7 @@ const Login = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        console.log(`Usuário: ${user} - Senha: ${password}`);
+        console.log(`LOGIN - Usuário: ${user} - Senha: ${password}`);
         navigation.navigate('main');
         Keyboard.dismiss();
     };

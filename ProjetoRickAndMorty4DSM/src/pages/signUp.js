@@ -15,7 +15,7 @@ const SignUp = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        console.log(`Nome: ${name} - Telefone: ${phone} - CPF: ${cpf} - E-mail: ${email} - Curso: ${course} - Senha: ${password}`);
+        console.log(`CADASTRO - Nome: ${name} - Telefone: ${phone} - CPF: ${cpf} - E-mail: ${email} - Curso: ${course} - Senha: ${password}`);
         alert('Cadastro realizado com sucesso! (De mentirinha)');
         navigation.navigate('login');
         Keyboard.dismiss();

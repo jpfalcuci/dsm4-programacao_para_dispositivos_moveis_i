@@ -61,6 +61,7 @@ export default class Main extends Component {
                     loading: false,
                     newCharacter: '',
                 });
+                Keyboard.dismiss();
                 return;
             }
 
@@ -74,6 +75,7 @@ export default class Main extends Component {
                 image: data.image,
                 location: data.location.name,
                 episode: firstEpisodeResponse.data.name,
+                created: data.created,
             };
 
             this.setState({
@@ -134,8 +136,7 @@ export default class Main extends Component {
                             <CardButtons>
                                 <CardButton
                                     onPress={() => {
-                                        // this.props.navigation.navigate('character', { character: item });
-                                        alert('Navegação para a tela de detalhes');
+                                        this.props.navigation.navigate('character', { character: item });
                                     }}
                                 >
                                     <CardButtonText>Mais detalhes</CardButtonText>
