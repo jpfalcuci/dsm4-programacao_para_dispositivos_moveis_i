@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Keyboard } from 'react-native';
-import { Container, Input, Button, ButtonText } from './styles';
+import { Container, Form, Input, Button, ButtonText } from './styles';
 
 const Login = () => {
 
@@ -11,8 +11,8 @@ const Login = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        // navigation.navigate('main');
-        alert('Navegação para a página principal');
+        console.log(`Usuário: ${user} - Senha: ${password}`);
+        navigation.navigate('main');
         Keyboard.dismiss();
     };
 

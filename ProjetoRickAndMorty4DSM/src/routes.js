@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './pages/login';
 import SignUp from './pages/signUp';
+import Main from './pages/main';
 
 const Stack = createStackNavigator()
 
@@ -40,6 +41,22 @@ export default function Routes(){
                             fontWeight: 'bold',
                             color: '#fff'
                         }
+                    }}
+                />
+                <Stack.Screen
+                    name="main"
+                    component={Main}
+                    options={{
+                        title: 'CARDS',
+                        headerTitleAlign: 'center',
+                        headerTintColor: '#fff',
+                        headerStyle: {
+                            backgroundColor: '#272B33',
+                        },
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                            color: '#fff',
+                        },
                     }}
                 />
             </Stack.Navigator>
