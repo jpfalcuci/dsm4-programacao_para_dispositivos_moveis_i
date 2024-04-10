@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Keyboard } from 'react-native';
-import { Container, Form, Input, Button, ButtonText } from './styles';
+import { Container, Input, Button, ButtonText } from './styles';
 
 const Login = () => {
 
@@ -25,11 +25,17 @@ const Login = () => {
         <Container>
             <Input
                 placeholder="Usuário"
+                keyboardType="email-address"
+                placeholderTextColor="#ccc"
+                color="#000"
                 value={user}
                 onChangeText={setUser}
             />
             <Input
                 placeholder="Senha"
+                keyboardType="numeric"
+                placeholderTextColor="#ccc"
+                color="#000"
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}

@@ -88,6 +88,7 @@ export default class Main extends Component {
         } catch (error) {
             console.log(error);
             alert('Algo de errado não está certo!');
+            this.setState({ loading: false });
             Keyboard.dismiss();
         }
     };
@@ -102,6 +103,8 @@ export default class Main extends Component {
                         autoCorrect={false}
                         autoCapitalize="none"
                         placeholder="Adicionar personagem"
+                        placeholderTextColor="#ccc"
+                        color="#000"
                         value={newCharacter}
                         onChangeText={text => this.setState({newCharacter: text})}
                         returnKeyType="send"
@@ -127,9 +130,9 @@ export default class Main extends Component {
                                 <CardInfos>
                                     <Name>{item.name}</Name>
                                     <Status>{item.status} - {item.species}</Status>
-                                    <LabelText>Last known location</LabelText>
+                                    <LabelText>Última localização:</LabelText>
                                     <InfoText>{item.location}</InfoText>
-                                    <LabelText>First seen in</LabelText>
+                                    <LabelText>Primeira aparição:</LabelText>
                                     <InfoText>{item.episode}</InfoText>
                                 </CardInfos>
                             </CardContent>
