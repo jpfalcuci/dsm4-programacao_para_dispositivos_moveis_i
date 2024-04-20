@@ -3,12 +3,12 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskItem from '../components/TaskItem';
 import Button from '../components/Button';
-import { TitleInput, DescriptionInput } from '../components/Inputs';
+import AddTaskModal from '../components/AddTaskModal';
+import { Keyboard } from 'react-native';
 
 const TaskListScreen = ({ navigation, route }) => {
   const [tasks, setTasks] = useState([]);
-  const [taskTitle, setTaskTitle] = useState('');
-  const [taskDescription, setTaskDescription] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -28,20 +28,18 @@ const TaskListScreen = ({ navigation, route }) => {
     fetchTasks();
   }, [route.params]);
 
-  const saveTask = async () => {
-    if (!taskTitle) return;
+  const saveTask = async (title, description) => {
     const newTask = {
       id: Date.now().toString(),
-      title: taskTitle,
-      description: taskDescription,
+      title: title,
+      description: description,
       completed: false,
     };
     try {
       const updatedTasks = [...tasks, newTask];
       setTasks(updatedTasks);
       await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
-      setTaskTitle('');
-      setTaskDescription('');
+      setIsModalVisible(false);
     } catch (error) {
       console.error('Error saving task:', error);
     }
@@ -71,17 +69,6 @@ const TaskListScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TitleInput
-          value={taskTitle}
-          onChangeText={setTaskTitle}
-        />
-        <DescriptionInput
-          value={taskDescription}
-          onChangeText={setTaskDescription}
-        />
-        <Button title="Adicionar Tarefa" onPress={saveTask} />
-      </View>
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
@@ -93,6 +80,17 @@ const TaskListScreen = ({ navigation, route }) => {
           />
         )}
         keyExtractor={(item) => item.id}
+      />
+      <View style={styles.inputContainer}>
+        <Button title="Incluir nova tarefa" onPress={() => {
+          setIsModalVisible(true);
+          Keyboard
+        }} />
+      </View>
+      <AddTaskModal
+        visible={isModalVisible}
+        onSave={saveTask}
+        onClose={() => setIsModalVisible(false)}
       />
     </View>
   );

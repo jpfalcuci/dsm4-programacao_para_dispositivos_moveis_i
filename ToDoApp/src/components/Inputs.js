@@ -5,11 +5,12 @@ const TitleInput = ({ value, onChangeText }) => {
   return (
     <TextInput
       style={styles.input}
-      placeholder="Título da Tarefa"
+      placeholder="Título da tarefa"
       value={value}
       onChangeText={onChangeText}
       color='#333333'
       placeholderTextColor={'#A5A5A5'}
+      autoFocus={true}
     />
   );
 };
@@ -18,7 +19,7 @@ const DescriptionInput = ({ value, onChangeText }) => {
   return (
     <TextInput
       style={[styles.input, styles.inputDescription]}
-      placeholder="Descrição da Tarefa"
+      placeholder="Descrição da tarefa"
       value={value}
       onChangeText={onChangeText}
       multiline
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     borderColor: '#A5A5A5',
     borderRadius: 5,
     backgroundColor: '#E0E5E5',
-    color: 'black',
   },
   inputDescription: {
     height: 80,

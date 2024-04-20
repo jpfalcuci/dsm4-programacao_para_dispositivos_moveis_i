@@ -14,6 +14,7 @@ const Button = ({ title, onPress, buttonStyle, textStyle }) => {
 
 const styles = StyleSheet.create({
   button: {
+    height: 40,
     padding: 10,
     borderRadius: 5,
     backgroundColor: '#B8B8B8',
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.5,
     shadowRadius: 20,
-    elevation: 10,
+    elevation: 5,
   },
   buttonText: {
     color: '#fff',
