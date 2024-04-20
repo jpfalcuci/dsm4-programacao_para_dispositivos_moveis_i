@@ -8,6 +8,9 @@ const TaskDetailsScreen = ({ route, navigation }) => {
   const { task } = route.params;
   const [editedTask, setEditedTask] = useState(task);
 
+  const creationDate = new Date(task.createdAt).toLocaleDateString('pt-BR');
+  const creationTime = new Date(task.createdAt).toLocaleTimeString('pt-BR');
+
   useEffect(() => {
     setEditedTask(task);
   }, [task]);
@@ -37,16 +40,11 @@ const TaskDetailsScreen = ({ route, navigation }) => {
         onChangeText={(text) => setEditedTask({ ...editedTask, description: text })}
         multiline
       />
-      <Text
-        style={{
-          fontSize: 16,
-          fontWeight: 'bold',
-          color: editedTask.completed ? '#7CB48F' : '#D66067',
-          marginTop: 5,
-          alignSelf: 'center'
-        }}
-      >
+      <Text style={[ styles.text, {fontSize: 16, color: editedTask.completed ? '#7CB48F' : '#D66067'}]}>
         Status: {editedTask.completed ? 'Concluída' : 'Pendente'}
+      </Text>
+      <Text style={[ styles.text, {fontSize: 12, color: '#A5A5A5'}]}>
+        Tarefa criada em {creationDate} às {creationTime}
       </Text>
       <View
         style={{
@@ -66,6 +64,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  text: {
+    fontWeight: 'bold',
+    marginTop: 5,
+    alignSelf: 'center'
   },
 });
 

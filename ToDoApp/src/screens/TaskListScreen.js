@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskItem from '../components/TaskItem';
 import Button from '../components/Button';
 import AddTaskModal from '../components/AddTaskModal';
-import { Keyboard } from 'react-native';
 
 const TaskListScreen = ({ navigation, route }) => {
   const [tasks, setTasks] = useState([]);
@@ -34,6 +33,7 @@ const TaskListScreen = ({ navigation, route }) => {
       title: title,
       description: description,
       completed: false,
+      createdAt: new Date().toString(),
     };
     try {
       const updatedTasks = [...tasks, newTask];
@@ -82,10 +82,7 @@ const TaskListScreen = ({ navigation, route }) => {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.inputContainer}>
-        <Button title="Incluir nova tarefa" onPress={() => {
-          setIsModalVisible(true);
-          Keyboard
-        }} />
+        <Button title="Incluir nova tarefa" onPress={() => {setIsModalVisible(true)}}/>
       </View>
       <AddTaskModal
         visible={isModalVisible}
