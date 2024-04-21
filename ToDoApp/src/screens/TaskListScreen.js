@@ -14,7 +14,9 @@ const TaskListScreen = ({ navigation, route }) => {
       try {
         const savedTasks = await AsyncStorage.getItem('tasks');
         if (savedTasks !== null) {
-          setTasks(JSON.parse(savedTasks));
+          let parsedTasks = JSON.parse(savedTasks);
+          const sortedTasks = sortTasks(parsedTasks);
+          setTasks(sortedTasks);
         }
         if (route.params && route.params.updatedTask) {
           const updatedTask = route.params.updatedTask;
@@ -26,6 +28,14 @@ const TaskListScreen = ({ navigation, route }) => {
     };
     fetchTasks();
   }, [route.params]);
+
+  const sortTasks = (tasks) => {
+    return tasks.sort((a, b) => {
+      if (a.completed && !b.completed) return 1;
+      if (!a.completed && b.completed) return -1;
+      return 0;
+    });
+  };
 
   const saveTask = async (title, description) => {
     const newTask = {
@@ -50,8 +60,9 @@ const TaskListScreen = ({ navigation, route }) => {
       const updatedTasks = tasks.map((task) =>
         task.id === taskId ? { ...task, completed: !task.completed } : task
       );
-      setTasks(updatedTasks);
-      await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      const sortedTasks = sortTasks(updatedTasks);
+      setTasks(sortedTasks);
+      await AsyncStorage.setItem('tasks', JSON.stringify(sortedTasks));
     } catch (error) {
       console.error('Error toggling task completion:', error);
     }
