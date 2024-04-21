@@ -38,6 +38,7 @@ const TaskDetailsScreen = ({ route, navigation }) => {
       />
       <DescriptionInput
         value={editedTask.description}
+        inputStyle={{ height: 200 }}
         onChangeText={(text) => setEditedTask({ ...editedTask, description: text })}
         multiline
       />

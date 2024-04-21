@@ -2,24 +2,25 @@ import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 import { Colors } from '../utils/Colors';
 
-const TitleInput = ({ value, onChangeText }) => {
+const TitleInput = ({ value, onChangeText, inputStyle }) => {
   return (
     <TextInput
-      style={styles.input}
+      style={[styles.input, inputStyle]}
       placeholder="Título da tarefa"
       value={value}
       onChangeText={onChangeText}
       color={Colors.inputFont}
       placeholderTextColor={Colors.inputPlaceholder}
       autoFocus={true}
+      maxLength={45}
     />
   );
 };
 
-const DescriptionInput = ({ value, onChangeText }) => {
+const DescriptionInput = ({ value, onChangeText, inputStyle }) => {
   return (
     <TextInput
-      style={[styles.input, styles.inputDescription]}
+      style={[styles.input, styles.inputDescription, inputStyle]}
       placeholder="Descrição da tarefa"
       value={value}
       onChangeText={onChangeText}
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.inputBackground,
   },
   inputDescription: {
-    height: 80,
+    height: 100,
     textAlignVertical: 'top',
   },
 });
