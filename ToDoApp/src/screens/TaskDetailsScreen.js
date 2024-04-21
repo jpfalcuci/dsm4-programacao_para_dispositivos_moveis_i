@@ -53,8 +53,8 @@ const TaskDetailsScreen = ({ route, navigation }) => {
           marginTop: 20,
         }}
       >
-        <Button buttonStyle={{ backgroundColor:'#D9D9D9', width: '45%' }} title="Voltar" onPress={() => navigation.goBack()} />
-        <Button buttonStyle={{ width: '45%'}} title="Salvar" onPress={handleSave} />
+        <Button buttonStyle={{ backgroundColor:'#D9D9D9', width: '45%' }} content="Voltar" onPress={() => navigation.goBack()}/>
+        <Button buttonStyle={{ width: '45%'}} content="Salvar" onPress={handleSave} />
       </View>
     </View>
   );

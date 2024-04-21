@@ -57,12 +57,12 @@ const AddTaskModal = ({ onSave, visible, onClose }) => {
             onChangeText={setTaskDescription}
           />
           <Button 
-            title="Adicionar tarefa"
+            content="Adicionar tarefa"
             onPress={handleSave}
           >
           </Button>
           <Button
-            title="Voltar"
+            content="Voltar"
             onPress={handleClose}
             buttonStyle={{ marginTop: 10, backgroundColor: '#D9D9D9' }}
           >

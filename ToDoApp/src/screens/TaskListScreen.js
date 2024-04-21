@@ -82,7 +82,7 @@ const TaskListScreen = ({ navigation, route }) => {
         keyExtractor={(item) => item.id}
       />
       <View style={styles.inputContainer}>
-        <Button title="Incluir nova tarefa" onPress={() => {setIsModalVisible(true)}}/>
+        <Button content="Incluir nova tarefa" onPress={() => {setIsModalVisible(true)}}/>
       </View>
       <AddTaskModal
         visible={isModalVisible}
