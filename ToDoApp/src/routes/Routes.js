@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TaskListScreen from '../screens/TaskListScreen';
 import TaskDetailsScreen from '../screens/TaskDetailsScreen';
+import { Colors } from '../utils/Colors';
 
 const Stack = createStackNavigator();
 
@@ -17,11 +18,11 @@ const Routes = () => {
             title: 'Lista de Tarefas',
             headerTitleAlign: 'center',
               headerStyle: {
-                  backgroundColor: '#333333',
+                  backgroundColor: Colors.headerBackground,
               },
               headerTitleStyle: {
                   fontWeight: 'bold',
-                  color: '#D9D9D9',
+                  color: Colors.headerContent,
               }
           }}
         />
@@ -34,11 +35,11 @@ const Routes = () => {
             headerTitleAlign: 'center',
             headerLeft: null,
               headerStyle: {
-                  backgroundColor: '#333333',
+                  backgroundColor: Colors.headerBackground,
               },
               headerTitleStyle: {
                   fontWeight: 'bold',
-                  color: '#D9D9D9',
+                  color: Colors.headerContent,
               }
           }}
         />

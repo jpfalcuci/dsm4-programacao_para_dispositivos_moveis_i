@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
+import { Colors } from '../utils/Colors';
 
 const TitleInput = ({ value, onChangeText }) => {
   return (
@@ -8,8 +9,8 @@ const TitleInput = ({ value, onChangeText }) => {
       placeholder="Título da tarefa"
       value={value}
       onChangeText={onChangeText}
-      color='#333333'
-      placeholderTextColor={'#A5A5A5'}
+      color={Colors.inputFont}
+      placeholderTextColor={Colors.inputPlaceholder}
       autoFocus={true}
     />
   );
@@ -23,8 +24,8 @@ const DescriptionInput = ({ value, onChangeText }) => {
       value={value}
       onChangeText={onChangeText}
       multiline
-      color='#333333'
-      placeholderTextColor={'#A5A5A5'}
+      color={Colors.inputFont}
+      placeholderTextColor={Colors.inputPlaceholder}
     />
   );
 };
@@ -34,9 +35,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#A5A5A5',
+    borderColor: Colors.inputBorder,
     borderRadius: 5,
-    backgroundColor: '#E0E5E5',
+    backgroundColor: Colors.inputBackground,
   },
   inputDescription: {
     height: 80,

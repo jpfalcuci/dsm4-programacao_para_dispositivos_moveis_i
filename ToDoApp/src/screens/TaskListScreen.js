@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import TaskItem from '../components/TaskItem';
 import Button from '../components/Button';
 import AddTaskModal from '../components/AddTaskModal';
+import { Colors } from '../utils/Colors';
 
 const TaskListScreen = ({ navigation, route }) => {
   const [tasks, setTasks] = useState([]);
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: Colors.screenBackground,
   },
   inputContainer: {
     marginBottom: 20,

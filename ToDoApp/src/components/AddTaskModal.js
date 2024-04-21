@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Modal, Alert } from 'react-native';
 import { TitleInput, DescriptionInput } from './Inputs';
 import Button from './Button';
+import { Colors } from '../utils/Colors';
 
 const AddTaskModal = ({ onSave, visible, onClose }) => {
 
@@ -37,12 +38,12 @@ const AddTaskModal = ({ onSave, visible, onClose }) => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+          backgroundColor: Colors.modalBackground, 
         }}
       >
         <View 
           style={{
-            backgroundColor: '#fff',
+            backgroundColor: Colors.screenBackground,
             padding: 20,
             borderRadius: 10,
             width: '80%'
@@ -64,7 +65,7 @@ const AddTaskModal = ({ onSave, visible, onClose }) => {
           <Button
             content="Voltar"
             onPress={handleClose}
-            buttonStyle={{ marginTop: 10, backgroundColor: '#D9D9D9' }}
+            buttonStyle={{ marginTop: 10, backgroundColor: Colors.buttonSecondary }}
           >
           </Button>
         </View>

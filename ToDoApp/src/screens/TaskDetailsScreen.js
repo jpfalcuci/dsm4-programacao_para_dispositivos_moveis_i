@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TitleInput, DescriptionInput } from '../components/Inputs';
 import Button from '../components/Button';
+import { Colors } from '../utils/Colors';
 
 const TaskDetailsScreen = ({ route, navigation }) => {
   const { task } = route.params;
@@ -40,10 +41,10 @@ const TaskDetailsScreen = ({ route, navigation }) => {
         onChangeText={(text) => setEditedTask({ ...editedTask, description: text })}
         multiline
       />
-      <Text style={[ styles.text, {fontSize: 16, color: editedTask.completed ? '#7CB48F' : '#D66067'}]}>
+      <Text style={[ styles.text, {fontSize: 16, color: editedTask.completed ? Colors.taskCompleted : Colors.taskPending }]}>
         Status: {editedTask.completed ? 'Concluída' : 'Pendente'}
       </Text>
-      <Text style={[ styles.text, {fontSize: 12, color: '#A5A5A5'}]}>
+      <Text style={[ styles.text, {fontSize: 12, color: Colors.screenContent}]}>
         Tarefa criada em {creationDate} às {creationTime}
       </Text>
       <View
@@ -53,7 +54,7 @@ const TaskDetailsScreen = ({ route, navigation }) => {
           marginTop: 20,
         }}
       >
-        <Button buttonStyle={{ backgroundColor:'#D9D9D9', width: '45%' }} content="Voltar" onPress={() => navigation.goBack()}/>
+        <Button buttonStyle={{ backgroundColor: Colors.buttonSecondary , width: '45%' }} content="Voltar" onPress={() => navigation.goBack()}/>
         <Button buttonStyle={{ width: '45%'}} content="Salvar" onPress={handleSave} />
       </View>
     </View>
@@ -64,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: Colors.screenBackground,
   },
   text: {
     fontWeight: 'bold',
