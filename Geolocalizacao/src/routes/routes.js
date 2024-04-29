@@ -1,66 +1,39 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { colors } from '../theme/colors';
+import Login from '../screens/login';
+import SignUp from '../screens/signup';
 
-import Main from "../pages/main"
-import Login from '../pages/login';
-import User from '../pages/user';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
-export default function Routes(){
-    return(
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen 
-                    name='login'
-                    component={Login}
-                    options={{
-                        title: 'LOGIN',
-                        headerTitleAlign: 'center',
-                        headerStyle: {
-                            backgroundColor: '#3498db',
-                        },
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            color: '#fff'
-                        }
-                    }}
-                />
-                <Stack.Screen
-                    name='main'
-                    component={Main}
-                    options={{
-                        title: 'GitHub Viewer',
-                        headerTitleAlign: 'center',
-                        headerTintColor: '#fff',
-                        // headerLeft: null,
-                        headerStyle: {
-                            backgroundColor: '#3498db',
-                        },
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            color: '#fff'
-                        }
-                    }}
-                />
-                <Stack.Screen
-                    name='user'
-                    component={User}
-                    options={{
-                        title: 'Perfil do Usuário',
-                        headerTitleAlign: 'center',
-                        headerTintColor: '#fff',
-                        headerStyle: {
-                            backgroundColor: '#3498db',
-                        },
-                        headerTitleStyle: {
-                            fontWeight: 'bold',
-                            color: '#fff'
-                        }
-                    }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+export default function Routes() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{
+            title: 'Login',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="signup"
+          component={SignUp}
+          options={{
+            title: 'Cadastro',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
