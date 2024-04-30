@@ -10,6 +10,9 @@ export const Input = ({ placeholder, value, onChangeText, secureTextEntry=false 
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
+      autoCapitalize='none'
+      // inputMode='email'
+      // keyboardType='email-address'
     />
   );
 };
