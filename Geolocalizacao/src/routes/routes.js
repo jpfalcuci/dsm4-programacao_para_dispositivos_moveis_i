@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { colors } from '../theme/colors';
 import Login from '../screens/login';
 import SignUp from '../screens/signup';
+import Main from '../screens/main';
 
 
 const Stack = createStackNavigator();
@@ -29,6 +30,18 @@ export default function Routes() {
             title: 'Cadastro',
             headerTitleAlign: 'center',
             headerTintColor: colors.headerTint,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="main"
+          component={Main}
+          options={{
+            title: 'Localização',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
+            headerLeft: null,
             headerStyle: { backgroundColor: colors.primary },
             headerTitleStyle: { fontWeight: 'bold' },
           }}

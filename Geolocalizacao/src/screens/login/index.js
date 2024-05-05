@@ -7,7 +7,7 @@ import { Button } from '../../components/button';
 import { S } from './styles';
 
 
-const Login = () => {
+export default function Login() {
 
   const navigation = useNavigation()
 
@@ -28,7 +28,7 @@ const Login = () => {
 
       if (userObj.email === email && userObj.password === password) {
         Alert.alert('Sucesso', 'Usuário logado com sucesso!');
-        // navigation.navigate('home');
+        navigation.navigate('main');
       }
     } catch (error) {
       console.log(error);
@@ -45,6 +45,7 @@ const Login = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
+        inputModeEmail={true}
         />
       <Input
         placeholder="Senha"
@@ -58,5 +59,3 @@ const Login = () => {
     </View>
   );
 };
-
-export default Login;
