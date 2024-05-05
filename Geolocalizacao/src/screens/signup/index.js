@@ -7,7 +7,7 @@ import { Button } from '../../components/button';
 import { S } from './styles';
 
 
-const SignUp = () => {
+export default function SignUp() {
 
   const navigation = useNavigation();
 
@@ -45,6 +45,7 @@ const SignUp = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={setEmail}
+        inputModeEmail={true}
       />
       <Input
         placeholder="Senha"
@@ -63,5 +64,3 @@ const SignUp = () => {
     </View>
   );
 };
-
-export default SignUp;
