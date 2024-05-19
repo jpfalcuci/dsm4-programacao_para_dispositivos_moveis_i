@@ -1,27 +1,39 @@
-import { useState } from 'react';
-import MapView from 'react-native-maps';
+import React, { useEffect } from 'react';
+import MapView, { Marker } from 'react-native-maps';
 import useLocation from '../../hooks/useLocation';
 import { S } from './styles';
 
-export default function Main({ navigation }) {
+export default function Main() {
+  const { latitude, longitude } = useLocation();
 
-  const [latitude, setLatitude] = useState(-20.5149199);
-  const [longitude, setLongitude] = useState(-47.4006887);
-  const { coords, errorMsg } = useLocation();
+  useEffect(() => {
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+  }, [latitude, longitude]);
+
+  const latitudeFatec = -20.5149199;
+  const longitudeFatec = -47.4006887;
+
+  const region = {
+    latitude: latitude || latitudeFatec,
+    longitude: longitude || longitudeFatec,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  };
+
+  const markerCoordinate = {
+    latitude: latitude || latitudeFatec,
+    longitude: longitude || longitudeFatec,
+  };
 
   return (
     <MapView
-      showsUserLocation={true}
-      showsMyLocationButton={false}
-      toolbarEnabled={false}
       style={S.map}
-      initialRegion={{
-        latitude,
-        longitude,
-        latitudeDelta: 0.010,
-        longitudeDelta: 0.010,
-        ...coords
-      }}
-    />
-  )
-};
+      region={region}>
+      <Marker
+        coordinate={markerCoordinate}
+        title="Minha localização"
+        description="Estou aqui"
+      />
+    </MapView>
+  );
+}
