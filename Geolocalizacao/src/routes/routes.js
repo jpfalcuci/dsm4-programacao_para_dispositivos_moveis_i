@@ -4,6 +4,8 @@ import { colors } from '../theme/colors';
 import Login from '../screens/login';
 import SignUp from '../screens/signup';
 import Main from '../screens/main';
+import Grafico from '../screens/graficos';
+import Opcoes from '../screens/opcoes';
 
 
 const Stack = createStackNavigator();
@@ -41,7 +43,28 @@ export default function Routes() {
             title: 'Localização',
             headerTitleAlign: 'center',
             headerTintColor: colors.headerTint,
-            headerLeft: null,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="grafico"
+          component={Grafico}
+          options={{
+            title: 'Gráfico',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="opcoes"
+          component={Opcoes}
+          options={{
+            title: 'Opções',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
             headerStyle: { backgroundColor: colors.primary },
             headerTitleStyle: { fontWeight: 'bold' },
           }}

@@ -28,7 +28,7 @@ export default function Login() {
 
       if (userObj.email === email && userObj.password === password) {
         Alert.alert('Sucesso', 'Usuário logado com sucesso!');
-        navigation.navigate('main');
+        navigation.navigate('opcoes');
       }
     } catch (error) {
       console.log(error);

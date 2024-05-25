@@ -28,11 +28,15 @@ export default function Main() {
   return (
     <MapView
       style={S.map}
-      region={region}>
+      region={region}
+      showsUserLocation={true}
+    >
       <Marker
         coordinate={markerCoordinate}
         title="Minha localização"
         description="Estou aqui"
+        draggable
+        pinColor="green"
       />
     </MapView>
   );
