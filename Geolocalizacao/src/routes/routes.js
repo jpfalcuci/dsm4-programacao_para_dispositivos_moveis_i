@@ -5,6 +5,7 @@ import Login from '../screens/login';
 import SignUp from '../screens/signup';
 import Main from '../screens/main';
 import Grafico from '../screens/graficos';
+import Camera from '../screens/camera';
 import Opcoes from '../screens/opcoes';
 
 
@@ -52,6 +53,17 @@ export default function Routes() {
           component={Grafico}
           options={{
             title: 'Gráfico',
+            headerTitleAlign: 'center',
+            headerTintColor: colors.headerTint,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Stack.Screen
+          name="camera"
+          component={Camera}
+          options={{
+            title: 'Camera',
             headerTitleAlign: 'center',
             headerTintColor: colors.headerTint,
             headerStyle: { backgroundColor: colors.primary },
